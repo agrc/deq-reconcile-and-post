@@ -1,24 +1,4 @@
-# This script reconciles and posts versions of the UIC enterprise geodatabase
 
-# from each editors version up through UIC_QA, UIC_Surrogate_Default, DEFAULT.
-
-#
-
-# The script will terminate if a conflict is detected during the reconcile
-
-# process after writing a log of the conflicts to the following file:
-
-#
-
-#   conflict file:
-
-#
-
-# If no conflicts are detected during reconciliation, then the script will post
-
-# to the target version.
-
-#
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
