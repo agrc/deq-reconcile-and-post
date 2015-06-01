@@ -1,11 +1,4 @@
 
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#  UIC Enterprise GDB Version Tree looks like this:
-
-#
-
 #                   DEFAULT
 
 #                   Owner: sdeAdmin
