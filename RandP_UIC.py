@@ -89,7 +89,7 @@ def deleteVersions():
         arcpy.DeleteVersion_management(versionOwner_Dict[deleteChild], deleteChild)
         print 'DELETED ' + deleteChild
 
-
+#---Compress UIC Geodatabase to State 0---
 
 def createVersions():
     arcpy.CreateVersion_management(uicAdmin, default, uicSurrogate.split('.')[1], 'PROTECTED')
