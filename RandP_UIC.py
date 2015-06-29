@@ -1,5 +1,6 @@
 import arcpy
 import sys
+import datetime, time
 from arcpy import env
 
 uicAdmin = r'Database Connections\UICAdmin.DefaultSpecific.sde'
