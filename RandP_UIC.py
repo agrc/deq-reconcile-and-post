@@ -1,6 +1,7 @@
 import arcpy
 import sys
 import datetime, time
+
 from arcpy import env
 
 uicAdmin = r'Database Connections\UICAdmin.DefaultSpecific.sde'
@@ -89,7 +90,6 @@ def deleteVersions():
     for deleteChild in reversed(childList):
         arcpy.DeleteVersion_management(versionOwner_Dict[deleteChild], deleteChild)
         print 'DELETED ' + deleteChild
-
 
 
 def createVersions():
