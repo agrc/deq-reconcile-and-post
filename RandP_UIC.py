@@ -79,8 +79,6 @@ def RandP_Versions():
 
 #---Delete old versions---
 def deleteVersions():
-    versionOwner_Dict = {default:uicAdmin, uicSurrogate:uicAdmin, uicQA:uicAdmin, cCady:uicCCady, \
-                     bAriotti:uicBAriotti, cCady_rnp:uicAdmin, bAriotti_rnp:uicAdmin}
     childList = []
 
     for version in arcpy.da.ListVersions(uicAdmin):
@@ -88,8 +86,15 @@ def deleteVersions():
             childList.append(child.name)
 
     for deleteChild in reversed(childList):
-        arcpy.DeleteVersion_management(versionOwner_Dict[deleteChild], deleteChild)
-        print 'DELETED ' + deleteChild
+        owner = 'Database Connections\DC_' + deleteChild.split('.')[0] + '@UDEQ@itdb110sp.dts.utah.gov.sde'
+        versionName = deleteChild.split('.')[1]
+
+        try:
+            arcpy.DeleteVersion_management(owner, versionName)
+            print 'DELETED ' + deleteChild
+
+        except:
+            print 'UNABLE TO DELETE ' + deleteChild
 
 
 def createVersions():
