@@ -4,7 +4,7 @@ import datetime, time
 
 from arcpy import env
 
-uicAdmin = r'Database Connections\UICAdmin.DefaultSpecific.sde'
+uicAdmin = r'Database Connections\UICAdmin.sde'
 uicBAriotti = r'Database Connections\BAriotti.sde'
 uicCCady = r'Database Connections\CCady.sde'
 
