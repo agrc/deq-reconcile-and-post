@@ -16,10 +16,11 @@ bAriotti = 'BARIOTTI.UIC_BAriotti'
 cCady_rnp = 'UICADMIN.UIC_RnP_CCady'
 bAriotti_rnp = 'UICADMIN.UIC_RnP_BAriotti'
 
-arcpy.env.workspace = uicAdmin
 
 #---Reconcile and Post---
 def RandP_Versions():
+
+    arcpy.env.workspace = uicAdmin
 
     #---Check for necessary versions
     versionLst = []
@@ -73,12 +74,16 @@ def RandP_Versions():
     arcpy.ReconcileVersions_management(uicAdmin, 'ALL_VERSIONS', default, uicSurrogate, 'LOCK_ACQUIRED', 'ABORT_CONFLICTS', \
                                        'BY_OBJECT', 'FAVOR_EDIT_VERSION', 'POST', '#', log + uicSurrogate + '_RnP' + today + '.txt')
 
+    arcpy.ClearWorkspaceCache_management(uicAdmin)
 
+    print ''
 
 
 
 #---Delete old versions---
 def deleteVersions():
+
+    arcpy.env.workspace = uicAdmin
 
     childList = []
     ownerDict = {'UICADMIN':uicAdmin, 'CCADY':uicCCady, 'BARIOTTI':uicBAriotti}
@@ -91,20 +96,23 @@ def deleteVersions():
         sdeConnection = ownerDict[deleteChild.split('.')[0]]
         versionName = deleteChild.split('.')[1]
 
-        try:
-            arcpy.DeleteVersion_management(sdeConnection, versionName)
-            print 'DELETED ' + deleteChild
+        arcpy.DeleteVersion_management(sdeConnection, versionName)
+        print 'DELETED ' + deleteChild
 
-        except:
-            print 'UNABLE TO DELETE ' + deleteChild
+    print ''
+
 
 
 def createVersions():
-    arcpy.CreateVersion_management(uicAdmin, default, uicSurrogate.split('.')[1], 'PROTECTED')
-    arcpy.CreateVersion_management(uicAdmin, uicSurrogate, uicQA.split('.')[1], 'PROTECTED')
-    arcpy.CreateVersion_management(uicCCady, uicQA, cCady.split('.')[1], 'PROTECTED')
-    arcpy.CreateVersion_management(uicBAriotti, uicQA, bAriotti.split('.')[1], 'PROTECTED')
 
+    arcpy.CreateVersion_management(uicAdmin, default, uicSurrogate.split('.')[1], 'PROTECTED')
+    print 'Created ' + uicSurrogate
+    arcpy.CreateVersion_management(uicAdmin, uicSurrogate, uicQA.split('.')[1], 'PROTECTED')
+    print 'Created ' + uicQA
+    arcpy.CreateVersion_management(uicCCady, uicQA, cCady.split('.')[1], 'PROTECTED')
+    print 'Created ' + cCady
+    arcpy.CreateVersion_management(uicBAriotti, uicQA, bAriotti.split('.')[1], 'PROTECTED')
+    print 'Created ' + bAriotti
 
 
 
